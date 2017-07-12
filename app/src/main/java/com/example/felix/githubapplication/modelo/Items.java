@@ -45,14 +45,17 @@ public class Items {
         this.name = name;
     }
 
-
-
     public Owner getOwner() {
         return Owner;
     }
 
     public void setOwner(Owner owner) {
         Owner = owner;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
 
