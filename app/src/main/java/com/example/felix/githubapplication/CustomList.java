@@ -16,16 +16,14 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.util.ArrayList;
 
-public class CustomList extends ArrayAdapter<String> {
+public class CustomList extends ArrayAdapter<Items> {
 
     private final Activity context;
-    ArrayList<String> listName = new ArrayList<>();
     ArrayList<Items> objItems = new ArrayList<>();
 
-    public CustomList(Activity context,ArrayList<String> listName, ArrayList<Items> objItems) {
-        super(context, R.layout.list_github, listName);
+    public CustomList(Activity context, ArrayList<Items> objItems) {
+        super(context, R.layout.list_github, objItems);
         this.context = context;
-        this.listName = listName;
         this.objItems = objItems;
     }
 
@@ -55,7 +53,7 @@ public class CustomList extends ArrayAdapter<String> {
         fieldStar.setText(objItems.get(position).getStargazers_count());
         fieldFork.setText(objItems.get(position).getForks_count());
         fieldDescription.setText(objItems.get(position).getDescription());
-        fieldName.setText(listName.get(position));
+        fieldName.setText(objItems.get(position).getName());
 
         //----------------Click-------------//
 
@@ -64,7 +62,7 @@ public class CustomList extends ArrayAdapter<String> {
             public void onClick(View v) {
 
                 Intent i = new Intent (context,DetailsActivitty.class);
-                i.putExtra("nameR",listName.get(position));
+                i.putExtra("nameR",objItems.get(position).getName());
                 i.putExtra("nameUser",objItems.get(position).getOwner().getLogin());
                 i.putExtra("pic", objItems.get(position).getOwner().getAvatar_url());
                 context.startActivity(i);

@@ -2,9 +2,11 @@ package com.example.felix.githubapplication.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
+
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Items {
+public class Items  {
 
     private String forks_count;
     private String stargazers_count;

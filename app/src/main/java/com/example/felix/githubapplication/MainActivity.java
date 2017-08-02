@@ -44,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void initView(){
-        adapter = new CustomList(this, listName,listItem);
-        list=(ListView)findViewById(R.id.list);
+        adapter = new CustomList(this, listItem);
+        list = (ListView)findViewById(R.id.list);
         list.setAdapter(adapter);
         list.setOnScrollListener(new EndlessScrollListener(this));
     }
@@ -61,15 +61,10 @@ public class MainActivity extends AppCompatActivity {
                 assert gitSync != null;
                 int j =  gitSync.getItems().size();
 
-                for (int i = 0; i < j; i++) {
-                   listName.add(gitSync.getItems().get(i).getName());
-                    listItem.add(gitSync.getItems().get(i));
-
-
-                }
+                    listItem = (ArrayList<Items>) gitSync.getItems();
 
                 ///init---------------or-----------notify--------------//
-                if (listName.size() <= 30) {
+                if (listItem.size() <= 30) {
                     initView();
                 }else {
                     adapter.notifyDataSetChanged();
